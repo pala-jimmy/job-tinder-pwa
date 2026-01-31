@@ -49,8 +49,14 @@ export default function Home() {
               ) : (
                 <>
                   <Link 
-                    href="/offerer/feed"
+                    href="/offerer/role-select"
                     className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition"
+                  >
+                    Select Role
+                  </Link>
+                  <Link 
+                    href="/offerer/feed"
+                    className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/30 transition"
                   >
                     Browse Candidates
                   </Link>
