@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "attributes": [
+    {
+      "id": "technical_skills",
+      "name": "Technical Skills",
+      "description": "Proficiency with technical tools, programming, and problem-solving",
+      "display_order": 1,
+      "default_weight": 1.0
+    },
+    {
+      "id": "communication",
+      "name": "Communication",
+      "description": "Ability to express ideas clearly and work with others",
+      "display_order": 2,
+      "default_weight": 1.0
+    },
+    {
+      "id": "leadership",
+      "name": "Leadership",
+      "description": "Ability to guide, motivate, and manage teams",
+      "display_order": 3,
+      "default_weight": 1.0
+    },
+    {
+      "id": "problem_solving",
+      "name": "Problem Solving",
+      "description": "Analytical thinking and creative solution finding",
+      "display_order": 4,
+      "default_weight": 1.0
+    },
+    {
+      "id": "adaptability",
+      "name": "Adaptability",
+      "description": "Flexibility and openness to change",
+      "display_order": 5,
+      "default_weight": 1.0
+    },
+    {
+      "id": "teamwork",
+      "name": "Teamwork",
+      "description": "Collaboration and interpersonal skills",
+      "display_order": 6,
+      "default_weight": 1.0
+    }
+  ],
+  "scoring_rules": {
+    "normalization": {
+      "min": 0,
+      "max": 10,
+      "method": "linear"
+    },
+    "calculation_methods": {
+      "average": "Simple average of question scores",
+      "weighted_average": "Average weighted by question weights",
+      "max": "Take maximum score",
+      "sum_normalized": "Sum scores and normalize to 0-10"
+    }
+  }
+}
