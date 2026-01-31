@@ -1,37 +1,98 @@
-﻿import Link from "next/link";
+﻿"use client";
+
+import Link from "next/link";
+import { useAuth } from "@/lib/auth-context";
 
 export default function Home() {
+  const { user, logout } = useAuth();
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-indigo-500 to-purple-600 p-4">
-      <div className="w-full max-w-md space-y-8 text-center">
-        <div>
-          <h1 className="text-5xl font-bold text-white mb-2">
-            Job Tinder
-          </h1>
-          <p className="text-indigo-100 text-lg">
-            Match your career
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-4">
+      <div className="max-w-2xl w-full text-center text-white space-y-8">
+        <h1 className="text-5xl md:text-6xl font-bold">
+          Job Tinder
+        </h1>
+        <p className="text-xl md:text-2xl opacity-90">
+          Match your career. Swipe to find your perfect job or candidate.
+        </p>
 
-        <div className="space-y-4 pt-8">
-          <Link
-            href="/seeker/profile"
-            className="block w-full rounded-lg bg-white px-6 py-4 text-lg font-semibold text-indigo-600 shadow-lg hover:bg-indigo-50 transition-colors"
-          >
-            I am a Job Seeker
-          </Link>
+        {user ? (
+          <div className="space-y-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+              <p className="text-lg mb-2">Welcome back!</p>
+              <p className="text-2xl font-semibold">{user.email}</p>
+              <p className="text-sm opacity-75 mt-1 capitalize">{user.role}</p>
+            </div>
 
-          <Link
-            href="/offerer/feed"
-            className="block w-full rounded-lg border-2 border-white px-6 py-4 text-lg font-semibold text-white hover:bg-white hover:text-indigo-600 transition-colors"
-          >
-            I am Recruiting
-          </Link>
-        </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {user.role === "seeker" ? (
+                <>
+                  <Link 
+                    href="/seeker/profile"
+                    className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition"
+                  >
+                    Edit Profile
+                  </Link>
+                  <Link 
+                    href="/seeker/questionnaire"
+                    className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/30 transition"
+                  >
+                    Questionnaire
+                  </Link>
+                  <Link 
+                    href="/seeker/stats"
+                    className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/30 transition"
+                  >
+                    View Stats
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link 
+                    href="/offerer/feed"
+                    className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition"
+                  >
+                    Browse Candidates
+                  </Link>
+                  <Link 
+                    href="/offerer/shortlist"
+                    className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/30 transition"
+                  >
+                    Shortlist
+                  </Link>
+                </>
+              )}
+            </div>
 
-        <div className="pt-8 text-indigo-100 text-sm">
-          <p>Select your role to continue</p>
-        </div>
+            <button
+              onClick={logout}
+              className="text-white/75 hover:text-white underline text-sm"
+            >
+              Log out
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-6">
+            <p className="text-lg opacity-90">
+              Get started by creating an account or logging in
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/auth/register"
+                className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition"
+              >
+                Sign Up
+              </Link>
+              <Link 
+                href="/auth/login"
+                className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/30 transition border-2 border-white/30"
+              >
+                Log In
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
