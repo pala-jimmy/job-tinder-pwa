@@ -8,6 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from config import get_settings
 from database import create_db_and_tables
 from routes.auth import router as auth_router
+from routes.questionnaire import router as questionnaire_router
+from routes.seeker import router as seeker_router
 
 settings = get_settings()
 
@@ -44,6 +46,8 @@ app.add_middleware(
 
 # Include routers
 app.include_router(auth_router)
+app.include_router(questionnaire_router)
+app.include_router(seeker_router)
 
 
 @app.get("/")
