@@ -19,9 +19,11 @@ class Settings(BaseSettings):
     # CORS
     allowed_origins: str = "http://localhost:3000,http://localhost:3001"
     
-    # Auth (placeholder for future)
-    secret_key: str = "dev-secret-key-change-in-production"
-    magic_link_expiry: int = 3600
+    # Auth / JWT
+    SECRET_KEY: str = "dev-secret-key-change-in-production-use-openssl-rand-hex-32"
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
+    magic_link_expiry: int = 3600  # Future use
     
     model_config = SettingsConfigDict(
         env_file=".env",

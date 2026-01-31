@@ -1,19 +1,19 @@
-"""Initial schema with all core models
+"""initial_schema_with_auth
 
-Revision ID: 2284e7a9b8e5
+Revision ID: 6c878fbde540
 Revises: 
-Create Date: 2026-01-31 21:58:06.933696
+Create Date: 2026-01-31 22:05:27.364939
 
 """
 from typing import Sequence, Union
 
 from alembic import op
-import sqlalchemy as sa
 import sqlmodel.sql.sqltypes
+import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '2284e7a9b8e5'
+revision: str = '6c878fbde540'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -65,6 +65,7 @@ def upgrade() -> None:
     op.create_table('users',
     sa.Column('id', sa.Uuid(), nullable=False),
     sa.Column('email', sqlmodel.sql.sqltypes.AutoString(length=255), nullable=False),
+    sa.Column('hashed_password', sqlmodel.sql.sqltypes.AutoString(length=255), nullable=False),
     sa.Column('role', sa.Enum('SEEKER', 'OFFERER', 'ADMIN', name='userrole'), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('last_login', sa.DateTime(), nullable=True),
@@ -187,3 +188,4 @@ def downgrade() -> None:
     op.drop_index(op.f('ix_offerer_role_configs_role_name'), table_name='offerer_role_configs')
     op.drop_table('offerer_role_configs')
     # ### end Alembic commands ###
+
