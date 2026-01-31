@@ -14,9 +14,18 @@ venv/
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
+*.py[cod]
+*$py.class
 
 # DB
 *.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Environment
+.env
+*.env.local
 
 # OS
 .DS_Store
