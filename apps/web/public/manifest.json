@@ -1,0 +1,41 @@
+{
+  "name": "Job Tinder PWA",
+  "short_name": "JobTinder",
+  "description": "Two-sided recruitment platform - swipe to match jobs and candidates",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Seeker Dashboard",
+      "short_name": "Dashboard",
+      "description": "View your profile and stats",
+      "url": "/seeker/stats",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Browse Candidates",
+      "short_name": "Feed",
+      "description": "Browse and swipe candidates",
+      "url": "/offerer/feed",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
