@@ -10,6 +10,7 @@ from database import create_db_and_tables
 from routes.auth import router as auth_router
 from routes.questionnaire import router as questionnaire_router
 from routes.seeker import router as seeker_router
+from routes.offerer import router as offerer_router
 
 settings = get_settings()
 
@@ -48,6 +49,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(questionnaire_router)
 app.include_router(seeker_router)
+app.include_router(offerer_router)
 
 
 @app.get("/")

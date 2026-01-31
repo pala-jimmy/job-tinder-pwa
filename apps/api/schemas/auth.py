@@ -14,12 +14,16 @@ class RegisterRequest(BaseModel):
     password: str = Field(min_length=8, max_length=100)
     role: UserRole = Field(default=UserRole.SEEKER)
     
+    # Optional fields for offerer registration
+    company: Optional[str] = Field(None, max_length=255, description="Company name (required for offerers)")
+
     class Config:
         json_schema_extra = {
             "example": {
                 "email": "user@example.com",
                 "password": "strongpassword123",
-                "role": "seeker"
+                "role": "seeker",
+                "company": "Tech Corp"
             }
         }
 
@@ -28,7 +32,7 @@ class LoginRequest(BaseModel):
     """Schema for user login"""
     email: EmailStr
     password: str
-    
+
     class Config:
         json_schema_extra = {
             "example": {
@@ -43,7 +47,7 @@ class TokenResponse(BaseModel):
     """Schema for token response"""
     access_token: str
     token_type: str = "bearer"
-    
+
     class Config:
         json_schema_extra = {
             "example": {
@@ -59,7 +63,7 @@ class UserResponse(BaseModel):
     email: str
     role: UserRole
     is_active: bool
-    
+
     class Config:
         json_schema_extra = {
             "example": {
